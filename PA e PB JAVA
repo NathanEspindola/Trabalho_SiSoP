@@ -1,0 +1,48 @@
+
+		public Word[] PA = new Word[] {								//linha		Programa A 7 Registradores -1 é não utilizado
+
+			new Word(Opcode.LDI, 0, -1, 5/*valor de repetição*/),	//0
+			new Word(Opcode.LDI, 1, -1, 15),						//1			LINHA DE SALTO DO CASO MENOR DE ZERO
+			new Word(Opcode.LDI, 2, -1, -1),						//2 		Valor Negativo para ser armazenado
+			new Word(Opcode.LDI, 3, -1, 14),						//3 		LINHA DE SALTO DO STOP	
+			new Word(Opcode.LDI, 4, -1, 1),							//4 		Carrega o inicio do Fibonacci	
+			new Word(Opcode.LDI, 5, -1, 20),						//5 		Carrego o primeiro valor da memoria que ira armazenar a memoria de Fibo
+			//----------JMP PARA TESTAR O ZERO--------
+			new Word(Opcode.JMPIL, 1, 0, -1),						//6 		Se o R0 for menor que 0 salta para onde ta o stop	
+			//----------LOOP de FIBONACCI---------
+			new Word(Opcode.JMPIE, 3, 0, -1),						//7 		Se O R0 for igual a 0 ele para o programa
+			new Word(Opcode.STX, 5, 4, -1),							//8 		Armazeno na memoria de posição 20 o primeiro valor de fibonacci	
+			new Word(Opcode.ADDI, 5, -1, 1),						//9 		Movo 1 na posição de memoria de fibonacci	
+			new Word(Opcode.LDX, 6, 5, -1),							//10 		Salvo o valor previo de Fibonacci no R6	
+			new Word(Opcode.ADD, 4, 6, -1),							//11 		Faço R4 = R4 + R6 
+			new Word(Opcode.SUBI, 0, -1, 1),						//12 		Diminuo 1 da sequencia de valores de RO		
+			new Word(Opcode.JMP, -1, -1, 7),						//13 		LINHA DO SALTO DO MEU LOOP DE FIBONACCI	
+			//----------FIM DO PROGRAMA CASO TENHA TIDO SEQUENCIA-----------
+			new Word(Opcode.STOP, -1, -1, -1),						//14 		Termina o programa	
+			//----------FIM DO PROGRAMA CASO TENHA SIDO USADO UM ZERO-------------
+			new Word(Opcode.STD, 2, -1, 20),						//15 		Salvo -1 no inicio da memoria
+			new Word(Opcode.STOP, -1, -1, -1),						//16 		Termina o programa	
+
+		}
+
+		public Word[] PB = new Word[] {					//linha
+
+			new Word(Opcode.LDI, 0, -1, 5 /*X=5*/ ), 	//0			valor armazenado na memória
+			new Word(Opcode.LDI, 1, -1, 11),			//1			linha do salto do jump de 0
+			new Word(Opcode.LDI, 2, -1, 6),				//2			linha do salto do jump do loop
+			new Word(Opcode.LDI, 3, -1, 1),				//3			valor do inicio do fatorial
+			new Word(Opcode.LDI, 4, -1, -1),			//4			valor caso seja negativo
+			//-------Teste do Zero-------
+			new Word(Opcode.JMPIL, 1, 0, -1),			//5			Se R0 for menor que 0 salta pro fim
+			//-------Loop do Fatorial-------
+			new Word(Opcode.MULT, 3, 0, -1),			//6			Multiplico o valor dele por ele mesmo
+			new Word(Opcode.SUBI, 0, -1, 1),			//7			Diminuo o valor do numero fatoral
+			new Word(Opcode.JMPIG, 0, 2, -1),			//8			Pulo para o inicio do Loop
+			//-------Fim do programa para o Fatorial-------
+			new Word(Opcode.STD, 0, -1, 20),			//9			Armazeno na memoria o resultado do faotrial
+			new Word(Opcode.STOP, -1, -1, -1),			//10		Termina o progama
+			//-------Fim do programa para o negativo-------
+			new Word(Opcode.STD, 4, -1, 20),			//11		Salvo -1 no inicio da memoria	
+			new Word(Opcode.STOP, -1, -1, -1),			//12		Termina o programa
+			
+		}; 
